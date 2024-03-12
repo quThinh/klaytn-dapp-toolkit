@@ -6,13 +6,14 @@ import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 import "hardhat-contract-sizer";
 import "hardhat-gas-reporter";
-import "@nomiclabs/hardhat-truffle5";
 import "@nomiclabs/hardhat-etherscan";
 import '@typechain/hardhat'
 import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-waffle'
+import * as dotenv from "dotenv";
 
 import {HardhatNetworkAccountsUserConfig} from "hardhat/types/config";
+dotenv.config();
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
@@ -79,12 +80,8 @@ const config: HardhatUserConfig = {
             timeout: 60000
         },
         bsctestnet: {
-            tags: ["local", "staging"],
-            live: true,
-            saveDeployments: true,
-            accounts,
-            loggingEnabled: true,
-            url: `https://data-seed-prebsc-1-s2.binance.org:8545`
+            url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+            accounts: [`${process.env.PRIVATE_KEY}`],
         },
         ganache: {
             tags: ["local"],

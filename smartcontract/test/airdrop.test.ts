@@ -69,30 +69,7 @@ describe("AirDrop.test", () => {
         
     });
     
-    const sign = async(amountToSign:BigNumber, addressToSign:Address) => {
-        const signature = await bob._signTypedData(
-            // Domain
-            {
-                name: "Truong",
-                version: "1.0.0",
-                chainId: "1",
-                verifyingContract: airdrop.address
-            },
-            // Types
-            {
-                TruongsAirDrop: [
-                    { name: "amount", type: "uint256" },
-                    { name: "account", type: "address" }
-                ],
-            },
-            // Values
-            {
-                amount: amountToSign,
-                account: addressToSign
-            }
-        )
-        return signature;
-    }
+    
     describe('#claim airdrop', () =>{
         const amount = expandDecimals(100, decimals);
         const bigAmount = expandDecimals(10000, decimals);
